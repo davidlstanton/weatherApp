@@ -50,7 +50,18 @@ An iOS code test - building an MVP for a weather app to enable people to pack ap
 * Use Alamofire for easy model generation, error handling and abstraction
 * Use a router model (as suggested by Alamofire)
 * Lightweight service as possible that actually does the networking bit - the only bit that won't be covered by unit tests'
+* A decision was taken not to objectify all the data from the API but only a simplified set of data for an MVP
 
 ### Notes on things that haven't been done
 
 * weather property from the api is returned as an array and should thus be handeled as such.  The current implementation takes the first object (if it exists) this has been done in the essence of wanting to complete the big picture and get the overall task done.  Obviously in production this is not what you would do especially not without a conversation about it with the product fucntion first.  Obviously this lack of information will propagate up through the stack.
+
+### Application Structure
+
+At this point the network stack has been written and returns a forcast for an id in the network model.
+
+* Following MVVM seems to be sensible, keeping all buisness logic in controllers, views as simple as possible (unit tests don't like view controllers)
+* All data from the network model will be moved into viewmodels to keep the networking layer and the UI layer totally decoupled.
+* We will need a simple on disk cache that caches request for 10 minutes.  This will be owned by the controller which will hit the cache service first then decide wether to hit the network service
+* We will also need a city name / id service probably also coredata and packaged as a preloaded sqlite db.
+

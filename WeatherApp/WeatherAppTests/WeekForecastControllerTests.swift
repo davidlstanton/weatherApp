@@ -20,7 +20,7 @@ class WeekForecastControllerTests: XCTestCase {
     }
     
     func testDayForecastModelToViewModel() {
-        let expected = DayForecastViewModel(day: "Mon", dateString: "8/5/17", dayTemp: 10, nightTemp: 8, weatherDescription: "Cloudy with a chance of meatballs")
+        let expected = DayForecastViewModel(day: "Mon", dateString: "08/05/17", dayTemp: 10, nightTemp: 8, weatherDescription: "Cloudy with a chance of meatballs")
         let date = Date(timeIntervalSince1970: 1494260330) // 8/05/2017
         let testData = DayForecastModel(
             forecastDate: date,

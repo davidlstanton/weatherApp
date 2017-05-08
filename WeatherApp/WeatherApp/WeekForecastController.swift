@@ -46,7 +46,12 @@ class WeekForecastController: NSObject {
     }
     
     func dateStrings(from: Date) -> (day: String, dateString: String) {
-        return ("Mon", "17/01/2017")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        let dateString = dateFormatter.string(from: from)
+        dateFormatter.dateFormat = "E"
+        let dayString = dateFormatter.string(from: from)
+        return (dayString, dateString)
     }
     
 }

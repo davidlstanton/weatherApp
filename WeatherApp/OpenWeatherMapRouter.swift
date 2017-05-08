@@ -11,11 +11,27 @@ import Alamofire
 
 enum OpenWeatherMapRouter: URLRequestConvertible {
     
+    static let baseURL = "http://api.openweathermap.org"
+    static let apiKey = "429526511ef680c746780f52256f740a"
+    
     case forcast7DaysDaily(cityId: Int)
-
     
     func asURLRequest() throws -> URLRequest {
-        return URLRequest(url: URL(string: "http://test.com")!)
+        
+        var result: (path: String, parameters: Parameters) = {
+            switch self {
+            case let .forcast7DaysDaily(cityId):
+                var parameters = ["id":String(cityId)]
+                let path = "/data/2.5/forecast/daily"
+                return (path, parameters)
+            }
+        }()
+        
+        result.parameters["units"] = "metric"
+        result.parameters["appid"] = OpenWeatherMapRouter.apiKey
+        let url = try OpenWeatherMapRouter.baseURL.asURL()
+        let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
+        return try URLEncoding.default.encode(urlRequest, with: result.parameters)
     }
     
 }

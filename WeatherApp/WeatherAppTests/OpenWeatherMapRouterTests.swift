@@ -12,7 +12,10 @@ import XCTest
 class OpenWeatherMapRouterTests: XCTestCase {
     
     func testForecast7DaysDaily() {
-        let expectedResult = "http://api.openweathermap.org/data/2.5/forecast/daily?id=2648110&units=metric&appid=429526511ef680c746780f52256f740a"
+        
+        // Note that this is not foolproof as parameters can be in any order.  Checking path + parameters would be better.
+        // For an MVP this is much quicker.
+        let expectedResult = "http://api.openweathermap.org/data/2.5/forecast/daily?appid=429526511ef680c746780f52256f740a&id=2648110&units=metric"
         guard let testResult = try? OpenWeatherMapRouter.forcast7DaysDaily(cityId: 2648110).asURLRequest().url?.absoluteString
             else {
                 XCTFail()

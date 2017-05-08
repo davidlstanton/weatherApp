@@ -11,7 +11,7 @@ import UIKit
 class ForcastViewController: UIViewController {
 
     @IBOutlet weak var tableView: ForcastTableView!
-    let dataProvider = WeekForecastController(networkService: OpenWeatherMapService())
+    let dataProvider = WeekForecastController(networkService: OpenWeatherMapService(), cacheService: OpenWeatherMapCache())
     
     override func viewDidLoad() {
         super.viewDidLoad()

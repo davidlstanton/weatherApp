@@ -11,29 +11,53 @@ import UIKit
 class WeekForecastController: NSObject {
     
     let weatherNetworkService: WeekForcastNetworkService?
+    let weatherCacheService: WeekForecastCacheService?
     
-    init(networkService: WeekForcastNetworkService?) {
+    init(networkService: WeekForcastNetworkService?, cacheService: WeekForecastCacheService?) {
         self.weatherNetworkService = networkService
+        self.weatherCacheService = cacheService
     }
     
     func viewModelForForecast(cityId: Int, callback: @escaping ([DayForecastViewModel]?, ViewError?) -> () ) {
         // hit cache service:
-        //    if valid cache return cache.
-        //    if invalid cache, show cache then fetch from network
-        //    if no cache, fetch from network
-        
-        forecastWeek(cityId: cityId) { (viewModel, viewError) in
-            if let viewError = viewError {
-                callback(nil, viewError)
-                return
-            }
-            if let viewModel = viewModel {
-                callback(viewModel, nil)
+        weatherCacheService?.get(cityId: cityId, callback: { (cacheModel) in
+            if let cacheModel = cacheModel {
+                if cacheModel.count > 7 {
+                    let viewModels = cacheModel.map { return self.dayForecastCacheModelToViewModel(cacheModel: $0) }
+                    callback(viewModels, nil)
+                    return
+                } else {
+                    let viewModels = cacheModel.map { return self.dayForecastCacheModelToViewModel(cacheModel: $0) }
+                    callback(viewModels, nil)
+                    self.forecastWeek(cityId: cityId) { (viewModel, viewError) in
+                        if let viewError = viewError {
+                            callback(nil, viewError)
+                            return
+                        }
+                        if let viewModel = viewModel {
+                            callback(viewModel, nil)
+                        } else {
+                            // TODO should be no data error
+                            callback(nil, ViewError.notImplemented)
+                        }
+                    }
+                }
             } else {
-                // TODO should be no data error
-                callback(nil, ViewError.notImplemented)
+                self.forecastWeek(cityId: cityId) { (viewModel, viewError) in
+                    if let viewError = viewError {
+                        callback(nil, viewError)
+                        return
+                    }
+                    if let viewModel = viewModel {
+                        callback(viewModel, nil)
+                    } else {
+                        // TODO should be no data error
+                        callback(nil, ViewError.notImplemented)
+                    }
+                }
             }
-        }
+        })
+        
     }
     
     internal func forecastWeek(cityId: Int, callback:@escaping ([DayForecastViewModel]?, ViewError?)->() ) {
@@ -45,13 +69,28 @@ class WeekForecastController: NSObject {
             if let model = model {
                 let viewModel = model.dayForecasts.map {
                 return self.dayForecastModelToViewModel(dayForecastModel: $0)}
-            callback(viewModel, nil)
+                let cacheModel = model.dayForecasts.map {
+                    self.dayForecastModelToCacheModel(dayForecastModel: $0, cityId: model.cityId, cityName: model.cityName)
+                }
+                self.weatherCacheService?.add(cacheModels: cacheModel)
+                callback(viewModel, nil)
             }
         }
     }
     
     internal func backEndErrorToViewError(error: BackendError) -> ViewError {
         return .notImplemented
+    }
+    
+    internal func dayForecastCacheModelToViewModel(cacheModel: DayForecastCacheModel) -> DayForecastViewModel {
+        let dateStringz = dateStrings(from: cacheModel.forecastDate)
+        let tempStringz = tempStrings(day: cacheModel.tempDay, night: cacheModel.tempNight)
+        return DayForecastViewModel(
+            day: dateStringz.day,
+            dateString: dateStringz.dateString,
+            dayTemp: tempStringz.day,
+            nightTemp: tempStringz.night,
+            weatherDescription: cacheModel.weatherDescription ?? "Have a great day")
     }
     
     internal func dayForecastModelToViewModel(dayForecastModel: DayForecastModel) -> DayForecastViewModel {

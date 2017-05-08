@@ -65,3 +65,6 @@ At this point the network stack has been written and returns a forcast for an id
 * We will need a simple on disk cache that caches request for 10 minutes.  This will be owned by the controller which will hit the cache service first then decide wether to hit the network service
 * We will also need a city name / id service probably also coredata and packaged as a preloaded sqlite db.
 
+### Milestone 1 
+
+Showing, admitedly hardcoded, weather for greater london.  Error are still being propagated as far as the view.  Errors should be taken down a layer turned into ErrorViewModel objects and those should be propagated up to the screen.  Thinking back (to a couple of hours ago) that was what my somewhat misguided ViewError should have been.

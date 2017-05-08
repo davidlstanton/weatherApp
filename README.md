@@ -20,5 +20,17 @@ An iOS code test - building an MVP for a weather app to enable people to pack ap
 * Sketch out the design (UI) 
 * Design the networking stack
 * Will we need a caching layer, where should this sit, what rules should it follow.
-* Mix eggs and bake.
+* Mix eggs and bake follow TDD (taste before and after).
 
+### OpenWeatherApi
+
+* Licence Attribution-ShareAlike 4.0 (tldr: must provide attribution to OpenWeatherMap in app)
+* API Key generated (live in 10 mins)
+* API is well documented, https://openweathermap.org/api
+* API appears to only be http (will have to generate create exception in app)
+* API has a call for a week forcast with data points ever 3 hours. https://openweathermap.org/forecast5
+* API does not have all data for all cities / times it seems.
+    > If you do not see some of the parameters in your API respond it means that these weather phenomena are just not happened for the time of measurement for the city or location chosen. Only really measured or calculated data is displayed in API respond.
+* API suggests using CityId.
+* City id's avalible to download in a huge (30MB file) maybe preload this into the binary as a db?
+* Also choosing a city will have to be more complicated than just a picker, there are alot of pickers.

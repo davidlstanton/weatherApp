@@ -13,7 +13,7 @@ An iOS code test - building an MVP for a weather app to enable people to pack ap
 * Should not be over engineered
 * Should run in a simulator
 
-###High level approach
+### High level approach
 
 * Look at OpenWeatherApi, understand what is needed to get info (login e.t.c.), work out which endpoints we will need.
 * Sketch out the user journey on a white board, mvp so this should be the simplest version of that journey.

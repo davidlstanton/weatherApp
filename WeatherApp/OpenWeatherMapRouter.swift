@@ -21,7 +21,7 @@ enum OpenWeatherMapRouter: URLRequestConvertible {
         var result: (path: String, parameters: Parameters) = {
             switch self {
             case let .forecast7DaysDaily(cityId):
-                var parameters = ["id":String(cityId)]
+                let parameters = ["id":String(cityId)]
                 let path = "/data/2.5/forecast/daily"
                 return (path, parameters)
             }

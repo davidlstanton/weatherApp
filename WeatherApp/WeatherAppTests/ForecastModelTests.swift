@@ -30,10 +30,12 @@ class ForecastModelTests: XCTestCase {
             "pressure": 925.04,
             "humidity": 76,
             "weather" : [
+                [
                     "id": 803,
                     "main": "Clouds",
                     "description": "broken clouds",
                     "icon":"04d"
+                ]
             ]
         ] as [String: Any]
         

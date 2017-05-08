@@ -29,7 +29,8 @@ final class DayForecastModel: ResponseObjectSerializable, ResponseCollectionSeri
         forecastDate = Date(timeIntervalSince1970: TimeInterval(forecastTimeEpoch))
         tempDay = (representation["temp"] as? [String:Any])?["day"] as? Double
         tempNight = (representation["temp"] as? [String:Any])?["night"] as? Double
-        weatherDescription = (representation["weather"] as? [String:Any])?["description"] as? String
-        weatherIcon = (representation["weather"] as? [String:Any])?["icon"] as? String
+        //TO Do: Break the below up into manageable chunks (the dark side of swift? as? ?)
+        weatherDescription = ((representation["weather"] as? [Any])?.first as? [String:Any])?["description"] as? String
+        weatherIcon = ((representation["weather"] as? [Any])?.first as? [String:Any])?["icon"] as? String
     }
 }

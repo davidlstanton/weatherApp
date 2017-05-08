@@ -87,4 +87,16 @@ class WeekForecastController: NSObject {
         return (dayString, dateString)
     }
     
+    internal func dayForecastModelToCacheModel(dayForecastModel: DayForecastModel, cityId: Int, cityName: String) -> DayForecastCacheModel {
+        let cacheModel = DayForecastCacheModel(cityId: cityId,
+                                               cityName: cityName,
+                                               forecastDate: dayForecastModel.forecastDate,
+                                               tempDay: dayForecastModel.tempDay,
+                                               tempNight: dayForecastModel.tempNight,
+                                               weatherDescription: dayForecastModel.weatherDescription,
+                                               weatherIcon: dayForecastModel.weatherIcon)
+        return cacheModel
+    }
+    
+    
 }

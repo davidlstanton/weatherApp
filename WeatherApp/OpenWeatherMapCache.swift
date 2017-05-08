@@ -9,7 +9,12 @@
 import UIKit
 import CoreData
 
-class OpenWeatherMapCache: NSObject {
+protocol WeekForecastCacheService {
+    func add(cacheModel: DayForecastCacheModel)
+    func get(cityId: Int, callback: @escaping ([DayForecastCacheModel]?) -> () )
+}
+
+class OpenWeatherMapCache: WeekForecastCacheService {
     
     var errorHandler: (Error) -> Void = {_ in }
     let name: String
@@ -79,7 +84,6 @@ class OpenWeatherMapCache: NSObject {
     
     init(name: String) {
         self.name = name
-        super.init()
     }
     
     func performForegroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {

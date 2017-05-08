@@ -69,3 +69,7 @@ At this point the network stack has been written and returns a forcast for an id
 
 Showing, admitedly hardcoded, weather for greater london.  Error are still being propagated as far as the view.  Errors should be taken down a layer turned into ErrorViewModel objects and those should be propagated up to the screen.  Thinking back (to a couple of hours ago) that was what my somewhat misguided ViewError should have been.
 
+### Cache + Core data
+
+This is new Core data and in swift.  Quick learning curve just realised I've never used core data with persistentContainer's or in Swift.  
+

@@ -68,3 +68,4 @@ At this point the network stack has been written and returns a forcast for an id
 ### Milestone 1 
 
 Showing, admitedly hardcoded, weather for greater london.  Error are still being propagated as far as the view.  Errors should be taken down a layer turned into ErrorViewModel objects and those should be propagated up to the screen.  Thinking back (to a couple of hours ago) that was what my somewhat misguided ViewError should have been.
+

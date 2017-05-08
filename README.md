@@ -71,5 +71,12 @@ Showing, admitedly hardcoded, weather for greater london.  Error are still being
 
 ### Cache + Core data
 
-This is new Core data and in swift.  Quick learning curve just realised I've never used core data with persistentContainer's or in Swift.  
+This is new Core data and in swift.  Quick learning curve just realised I've never used core data with persistentContainer's or in Swift.
+
+### Time time time
+
+In the interest of time the cache (and part of the controller missed out on unit tests) this decision was taken as there are already some unit test in the project but I deemed showing the use of core data and building a functioning app more useful.
+
+
+Also In the interest of time a mechanism for choosing any city out I imagine 1000's is probably a days work.  In the spirit of an MVP I've decided to show a handful selectable via a picker.
 

@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MRc-UB-4oC" customClass="ForcastTableView" customModule="WeatherApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForcastCell" rowHeight="105" id="NQ4-jk-LfE" customClass="ForecastTableViewCell" customModule="WeatherApp" customModuleProvider="target">
@@ -82,16 +82,23 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rwh-rc-MMX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Rwh-rc-MMX" secondAttribute="trailing" id="4gl-eB-LTx"/>
+                            <constraint firstItem="Rwh-rc-MMX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="6nd-2B-aa8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MRc-UB-4oC" secondAttribute="bottom" id="IiI-Ao-ftt"/>
-                            <constraint firstItem="MRc-UB-4oC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="g3a-tP-nan"/>
+                            <constraint firstItem="MRc-UB-4oC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="g3a-tP-nan"/>
                             <constraint firstAttribute="trailing" secondItem="MRc-UB-4oC" secondAttribute="trailing" id="hoo-L4-cuJ"/>
                             <constraint firstItem="MRc-UB-4oC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="htw-D1-BXZ"/>
+                            <constraint firstItem="Rwh-rc-MMX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zWK-4s-OCi"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="pickerView" destination="Rwh-rc-MMX" id="Wmo-oI-HJQ"/>
                         <outlet property="tableView" destination="MRc-UB-4oC" id="haW-OC-bPU"/>
                     </connections>
                 </viewController>

@@ -5,6 +5,10 @@
 //  Created by David on 08/05/2017.
 //  Copyright © 2017 DavidStanton. All rights reserved.
 //
+//  Language and Units could be passed in here, this data would then also decorate the model object
+//  Not really needed for an MVP but if this was going further it would make alot of sense.
+//
+//  Also one can make a debate as to whether the api key should be here, in a plist config file or injected by CI at build time.
 
 import Foundation
 import Alamofire

@@ -37,6 +37,8 @@ An iOS code test - building an MVP for a weather app to enable people to pack ap
 * API suggests using CityId.
 * City id's avalible to download in a huge (30MB file) maybe preload this into the binary as a db?
 * Also choosing a city will have to be more complicated than just a picker, there are alot of pickers.
+* Temperature is Kelvin by default (pass parameter units=metric to get Celcius)
+* There is multilingual support (default seems to be english though)
 
 ### Network Stack
 

@@ -15,6 +15,7 @@
 		63AE63AA1EC099C40055FDCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63AE63A81EC099C40055FDCF /* LaunchScreen.storyboard */; };
 		63AE63B51EC099C40055FDCF /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AE63B41EC099C40055FDCF /* WeatherAppTests.swift */; };
 		63AE63C01EC099C40055FDCF /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AE63BF1EC099C40055FDCF /* WeatherAppUITests.swift */; };
+		63AE63CF1EC09AB00055FDCF /* OpenWeatherMapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AE63CE1EC09AB00055FDCF /* OpenWeatherMapRouter.swift */; };
 		C6BE46C7FA359C97C70D509E /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22030F6739A127B9D7AA6E2C /* Pods_WeatherApp.framework */; };
 		F7DF0967110E04E8831157C4 /* Pods_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0B9D6E9CC7BAF6AE2EAFEB /* Pods_WeatherAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		63AE63BB1EC099C40055FDCF /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63AE63BF1EC099C40055FDCF /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		63AE63C11EC099C40055FDCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63AE63CE1EC09AB00055FDCF /* OpenWeatherMapRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapRouter.swift; sourceTree = "<group>"; };
 		6BC2F845965F6FFCA533E1FD /* Pods-WeatherAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAppUITests/Pods-WeatherAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7F76027B195EA5A911BCB576 /* Pods-WeatherAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherAppTests/Pods-WeatherAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		AA0B9D6E9CC7BAF6AE2EAFEB /* Pods_WeatherAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 		63AE639E1EC099C40055FDCF /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				63AE63CD1EC09A850055FDCF /* Services */,
 				63AE639F1EC099C40055FDCF /* AppDelegate.swift */,
 				63AE63A11EC099C40055FDCF /* ViewController.swift */,
 				63AE63A31EC099C40055FDCF /* Main.storyboard */,
@@ -163,6 +166,15 @@
 				63AE63C11EC099C40055FDCF /* Info.plist */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		63AE63CD1EC09A850055FDCF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				63AE63CE1EC09AB00055FDCF /* OpenWeatherMapRouter.swift */,
+			);
+			name = Services;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63AE63CF1EC09AB00055FDCF /* OpenWeatherMapRouter.swift in Sources */,
 				63AE63A21EC099C40055FDCF /* ViewController.swift in Sources */,
 				63AE63A01EC099C40055FDCF /* AppDelegate.swift in Sources */,
 			);
@@ -709,6 +722,7 @@
 				63AE63C61EC099C40055FDCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		63AE63C71EC099C40055FDCF /* Build configuration list for PBXNativeTarget "WeatherAppTests" */ = {
 			isa = XCConfigurationList;
@@ -717,6 +731,7 @@
 				63AE63C91EC099C40055FDCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		63AE63CA1EC099C40055FDCF /* Build configuration list for PBXNativeTarget "WeatherAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -725,6 +740,7 @@
 				63AE63CC1EC099C40055FDCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

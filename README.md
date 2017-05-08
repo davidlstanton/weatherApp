@@ -40,6 +40,11 @@ An iOS code test - building an MVP for a weather app to enable people to pack ap
 * Temperature is Kelvin by default (pass parameter units=metric to get Celcius)
 * There is multilingual support (default seems to be english though)
 
+---
+
+* Turns out the api isn't documented great and you can get 7 days of data from 16 day daily data endpoint with a free account
+* Also caching data for a minimum of 10 minutes is recomended
+
 ### Network Stack
 
 * Use Alamofire for easy model generation, error handling and abstraction

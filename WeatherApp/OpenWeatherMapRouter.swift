@@ -11,6 +11,9 @@ import Alamofire
 
 enum OpenWeatherMapRouter: URLRequestConvertible {
     
+    case fiveDayForecast(cityId: String)
+
+    
     func asURLRequest() throws -> URLRequest {
         return URLRequest(url: URL(string: "")!)
     }

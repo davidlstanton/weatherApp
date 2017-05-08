@@ -11,16 +11,16 @@ import UIKit
 class DayForecastViewModel {
     
     let day: String
-    let dateString: String?
-    let dayTemp: Double?
-    let nightTemp: Double?
-    let weatherDescription: String?
+    let dateString: String
+    let dayTemp: String
+    let nightTemp: String
+    let weatherDescription: String
     
     init(day: String,
-         dateString: String?,
-         dayTemp: Double?,
-         nightTemp: Double?,
-         weatherDescription: String?) {
+         dateString: String,
+         dayTemp: String,
+         nightTemp: String,
+         weatherDescription: String) {
         
         self.day = day
         self.dateString = dateString

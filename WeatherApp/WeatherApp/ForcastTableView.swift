@@ -8,9 +8,15 @@
 
 import UIKit
 
-class ForcastTableViewController: UITableView, UITableViewDelegate, UITableViewDataSource {
+class ForcastTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     private var data: [DayForecastViewModel] = []
+    
+    override required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.delegate = self
+        self.dataSource = self
+    }
     
     func setData(viewModel: [DayForecastViewModel]) {
         data = viewModel
@@ -27,8 +33,8 @@ class ForcastTableViewController: UITableView, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ForcastCell", for: indexPath) as! ForecastTableViewCell
+        cell.configureWith(viewModel: data[indexPath.row])
         // Configure the cell...
 
         return cell

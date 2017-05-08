@@ -27,7 +27,10 @@ class ForecastTableViewCell: UITableViewCell {
     }
     
     func configureWith(viewModel: DayForecastViewModel) {
-        
+        dayLabel.text = viewModel.day
+        weatherDescriptionLabel.text = viewModel.weatherDescription
+        dayTemp.text = viewModel.dayTemp
+        nightTemp.text = viewModel.nightTemp
     }
 
 }

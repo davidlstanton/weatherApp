@@ -56,12 +56,26 @@ class WeekForecastController: NSObject {
     
     internal func dayForecastModelToViewModel(dayForecastModel: DayForecastModel) -> DayForecastViewModel {
         let dateStringz = dateStrings(from: dayForecastModel.forecastDate)
+        let tempStringz = tempStrings(day: dayForecastModel.tempDay, night: dayForecastModel.tempNight)
         return DayForecastViewModel(
             day: dateStringz.day,
             dateString: dateStringz.dateString,
-            dayTemp: dayForecastModel.tempDay,
-            nightTemp: dayForecastModel.tempNight,
-            weatherDescription: dayForecastModel.weatherDescription)
+            dayTemp: tempStringz.day,
+            nightTemp: tempStringz.night,
+            weatherDescription: dayForecastModel.weatherDescription ?? "Have a great day")
+            //TO DO: better no weather description message
+    }
+    
+    internal func tempStrings(day: Double?, night: Double?) -> (day: String, night: String) {
+        var dayString = "Day temp unknown"
+        var nightString = "Night temp unknown"
+        if let day = day {
+            dayString = "Day: \(day)℃"
+        }
+        if let night = night {
+            nightString = "Night: \(night)℃"
+        }
+        return (dayString, nightString)
     }
     
     internal func dateStrings(from: Date) -> (day: String, dateString: String) {

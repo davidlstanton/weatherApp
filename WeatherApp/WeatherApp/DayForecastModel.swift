@@ -33,4 +33,17 @@ final class DayForecastModel: ResponseObjectSerializable, ResponseCollectionSeri
         weatherDescription = ((representation["weather"] as? [Any])?.first as? [String:Any])?["description"] as? String
         weatherIcon = ((representation["weather"] as? [Any])?.first as? [String:Any])?["icon"] as? String
     }
+
+    init(
+        forecastDate: Date,
+        tempDay: Double,
+        tempNight: Double,
+        weatherDescription: String,
+        weatherIcon: String) {
+        self.forecastDate = forecastDate
+        self.tempDay = tempDay
+        self.tempNight = tempNight
+        self.weatherDescription = weatherDescription
+        self.weatherIcon = weatherIcon
+    }
 }

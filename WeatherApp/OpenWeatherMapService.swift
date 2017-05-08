@@ -9,9 +9,13 @@
 import Foundation
 import Alamofire
 
-class OpenWeatherMapService: NSObject {
+protocol WeekForcastNetworkService {
+    func weekForecast(cityId: Int, callback: @escaping (ForecastModel?, Error?) -> ())
+}
+
+class OpenWeatherMapService: WeekForcastNetworkService {
     
-    class func weekForecast(cityId: Int, callback: @escaping (ForecastModel?, Error?) -> ()){
+    func weekForecast(cityId: Int, callback: @escaping (ForecastModel?, Error?) -> ()){
         _ = Alamofire.request(OpenWeatherMapRouter.forecast7DaysDaily(cityId: cityId)).validate().responseObject { (response: DataResponse<ForecastModel>) in
             if let error = response.error {
                 callback(nil, error)

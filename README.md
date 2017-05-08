@@ -13,6 +13,9 @@ An iOS code test - building an MVP for a weather app to enable people to pack ap
 * Should not be over engineered
 * Should run in a simulator
 
+
+## The following will probably read a bit like a blog (in reverse order) explaining my train of thought
+
 ### High level approach
 
 * Look at OpenWeatherApi, understand what is needed to get info (login e.t.c.), work out which endpoints we will need.
@@ -34,3 +37,9 @@ An iOS code test - building an MVP for a weather app to enable people to pack ap
 * API suggests using CityId.
 * City id's avalible to download in a huge (30MB file) maybe preload this into the binary as a db?
 * Also choosing a city will have to be more complicated than just a picker, there are alot of pickers.
+
+### Network Stack
+
+* Use Alamofire for easy model generation, error handling and abstraction
+* Use a router model (as suggested by Alamofire)
+* Lightweight service as possible that actually does the networking bit - the only bit that won't be covered by unit tests'

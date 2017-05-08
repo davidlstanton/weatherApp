@@ -11,11 +11,11 @@ import Alamofire
 
 enum OpenWeatherMapRouter: URLRequestConvertible {
     
-    case fiveDayForecast(cityId: String)
+    case forcast7DaysDaily(cityId: Int)
 
     
     func asURLRequest() throws -> URLRequest {
-        return URLRequest(url: URL(string: "")!)
+        return URLRequest(url: URL(string: "http://test.com")!)
     }
     
 }

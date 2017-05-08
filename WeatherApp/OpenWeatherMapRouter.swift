@@ -14,13 +14,13 @@ enum OpenWeatherMapRouter: URLRequestConvertible {
     static let baseURL = "http://api.openweathermap.org"
     static let apiKey = "429526511ef680c746780f52256f740a"
     
-    case forcast7DaysDaily(cityId: Int)
+    case forecast7DaysDaily(cityId: Int)
     
     func asURLRequest() throws -> URLRequest {
         
         var result: (path: String, parameters: Parameters) = {
             switch self {
-            case let .forcast7DaysDaily(cityId):
+            case let .forecast7DaysDaily(cityId):
                 var parameters = ["id":String(cityId)]
                 let path = "/data/2.5/forecast/daily"
                 return (path, parameters)

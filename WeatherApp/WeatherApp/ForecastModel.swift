@@ -1,5 +1,5 @@
 //
-//  ForcastModel.swift
+//  ForecastModel.swift
 //  WeatherApp
 //
 //  Created by David on 08/05/2017.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-final class ForcastModel: ResponseObjectSerializable {
+final class ForecastModel: ResponseObjectSerializable {
 
     let cityId: Int
     let cityName: String
     let cityCountryCode: String
-    let dayForcasts: [Any]
+    let dayForecasts: [Any]
     
     required init?(response: HTTPURLResponse, representation: Any) {
         self.cityId = 0
         self.cityName = ""
         self.cityCountryCode = ""
-        dayForcasts = []
+        dayForecasts = []
     }
     
 }

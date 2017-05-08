@@ -10,32 +10,51 @@ import UIKit
 
 class WeekForecastController: NSObject {
     
-    let weatherService: WeekForcastNetworkService?
+    let weatherNetworkService: WeekForcastNetworkService?
     
-    init(weatherService: WeekForcastNetworkService?) {
-        self.weatherService = weatherService
+    init(networkService: WeekForcastNetworkService?) {
+        self.weatherNetworkService = networkService
     }
     
-    func viewModelForForecast(cityId: Int, callback: ([DayForecastModel]?, ViewError?) -> () ) {
+    func viewModelForForecast(cityId: Int, callback: @escaping ([DayForecastViewModel]?, ViewError?) -> () ) {
         // hit cache service:
         //    if valid cache return cache.
         //    if invalid cache, show cache then fetch from network
         //    if no cache, fetch from network
         
-        
-    }
-    
-    func forecastWeek(cityId: Int, callback:([DayForecastModel]?, BackendError?)->() ) {
-        weatherService!.weekForecast(cityId: cityId) { (model, error) in
-            print("")
+        forecastWeek(cityId: cityId) { (viewModel, viewError) in
+            if let viewError = viewError {
+                callback(nil, viewError)
+                return
+            }
+            if let viewModel = viewModel {
+                callback(viewModel, nil)
+            } else {
+                // TODO should be no data error
+                callback(nil, ViewError.notImplemented)
+            }
         }
     }
     
-    func backEndErrorToViewError(error: BackendError) -> ViewError {
+    internal func forecastWeek(cityId: Int, callback:@escaping ([DayForecastViewModel]?, ViewError?)->() ) {
+        weatherNetworkService!.weekForecast(cityId: cityId) { (model, error) in
+            if let error = error {
+                callback(nil, self.backEndErrorToViewError(error: error))
+                return
+            }
+            if let model = model {
+                let viewModel = model.dayForecasts.map {
+                return self.dayForecastModelToViewModel(dayForecastModel: $0)}
+            callback(viewModel, nil)
+            }
+        }
+    }
+    
+    internal func backEndErrorToViewError(error: BackendError) -> ViewError {
         return .notImplemented
     }
     
-    func dayForecastModelToViewModel(dayForecastModel: DayForecastModel) -> DayForecastViewModel {
+    internal func dayForecastModelToViewModel(dayForecastModel: DayForecastModel) -> DayForecastViewModel {
         let dateStringz = dateStrings(from: dayForecastModel.forecastDate)
         return DayForecastViewModel(
             day: dateStringz.day,
@@ -45,7 +64,7 @@ class WeekForecastController: NSObject {
             weatherDescription: dayForecastModel.weatherDescription)
     }
     
-    func dateStrings(from: Date) -> (day: String, dateString: String) {
+    internal func dateStrings(from: Date) -> (day: String, dateString: String) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yy"
         let dateString = dateFormatter.string(from: from)

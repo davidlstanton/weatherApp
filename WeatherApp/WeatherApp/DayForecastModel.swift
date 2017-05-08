@@ -32,7 +32,7 @@
 
 import UIKit
 
-class DayForecastModel: ResponseObjectSerializable, ResponseCollectionSerializable {
+final class DayForecastModel: ResponseObjectSerializable, ResponseCollectionSerializable {
     
     let forecastDate: Date
     let tempDay: Double

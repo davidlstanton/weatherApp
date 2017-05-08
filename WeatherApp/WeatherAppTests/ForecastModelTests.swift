@@ -11,26 +11,47 @@ import XCTest
 
 class ForecastModelTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testNoData() {
+        let testModel = DayForecastModel(response: HTTPURLResponse(), representation: [:])
+        XCTAssertNil(testModel)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testData() {
+        let testData = [
+            "dt":1406080800,
+            "temp": [
+                "day": 297.77,
+                "min": 293.52,
+                "max": 297.77,
+                "night": 293.52,
+                "eve": 297.77,
+                "morn": 297.77
+            ],
+            "pressure": 925.04,
+            "humidity": 76,
+            "weather" : [
+                [
+                    "id": 803,
+                    "main": "Clouds",
+                    "description": "broken clouds",
+                    "icon":"04d"
+                ]
+            ]
+        ] as [String: Any]
+        
+        guard let testModel = DayForecastModel(response: HTTPURLResponse(), representation: testData)
+            else {
+                XCTFail()
+                return
         }
+        
+        XCTAssertTrue(Date(timeIntervalSince1970: 1406080800) == testModel.forecastDate)
+        XCTAssertTrue(297.77 == testModel.tempDay)
+        XCTAssertTrue(293.52 == testModel.tempNight)
+        XCTAssertTrue("broken clouds" == testModel.weatherDescription)
+        XCTAssertTrue("04d" == testModel.weatherIcon)
     }
     
 }
+
+

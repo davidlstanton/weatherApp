@@ -50,3 +50,7 @@ An iOS code test - building an MVP for a weather app to enable people to pack ap
 * Use Alamofire for easy model generation, error handling and abstraction
 * Use a router model (as suggested by Alamofire)
 * Lightweight service as possible that actually does the networking bit - the only bit that won't be covered by unit tests'
+
+### Notes on things that haven't been done
+
+* weather property from the api is returned as an array and should thus be handeled as such.  The current implementation takes the first object (if it exists) this has been done in the essence of wanting to complete the big picture and get the overall task done.  Obviously in production this is not what you would do especially not without a conversation about it with the product fucntion first.  Obviously this lack of information will propagate up through the stack.
